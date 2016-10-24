@@ -22,12 +22,13 @@ github "adjust/ios_sdk" "trademob"
 
 You can also integrate adjust with Trademob events by following these steps:
 
-1. Locate the `plugin/Trademob` folder inside the downloaded archive from our [releases page](https://github.com/adjust/ios_sdk/releases).
+1. Locate the `plugin/Trademob` folder inside the downloaded archive from our [releases page]
+   (https://github.com/adjust/ios_sdk/releases).
 
 2. Drag the `ADJTrademob.h` and `ADJTrademob.m` files into the `Adjust` folder inside your project.
 
-3. In the dialog `Choose options for adding these files` make sure to check the checkbox
-to `Copy items if needed` and select the radio button to `Create groups`.
+3. In the dialog `Choose options for adding these files` make sure to check the checkbox to `Copy items if needed` and select 
+   the radio button to `Create groups`.
 
 For questions regarding this plugin, please reach out to `eugenio.warglien@trademob.com`
 
@@ -35,7 +36,7 @@ For questions regarding this plugin, please reach out to `eugenio.warglien@trade
 
 You can now use Trademob events in the following ways:
 
-#### View Listing
+### View Listing
 
 ```objc
 #import "ADJTrademob.h"
@@ -65,7 +66,7 @@ NSDictionary *metadata = @{@"info1":@"value1", @"info2":@"value2"};
 [Adjust trackEvent:event];
 ```
 
-#### Add to Basket
+### Add to Basket
 
 ```objc
 #import "ADJTrademob.h"
@@ -82,7 +83,7 @@ NSArray *items = @[item1, item2];
 [Adjust trackEvent:event];
 ```
 
-#### Checkout
+### Checkout
 
 ```objc
 #import "ADJTrademob.h"
