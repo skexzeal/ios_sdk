@@ -128,8 +128,8 @@ you want to add the adjust SDK by adding its source files to your project, you c
 
 Select your project in the Project Navigator. In the left hand side of the main view, select your target. In the tab
 `Build Phases`, expand the group `Link Binary with Libraries`. On the bottom of that section click on the `+` button.
-Select the `AdSupport.framework` and click the `Add` button. Unless you
-are using tvOS, repeat the same steps to add the `iAd.framework`. Change the `Status` of both frameworks to `Optional`.
+Select the `AdSupport.framework` and click the `Add` button. Unless you are using tvOS, repeat the same steps to add the 
+`iAd.framework`. Change the `Status` of both frameworks to `Optional`.
 
 ![][framework]
 
@@ -195,7 +195,7 @@ ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
 [Adjust appDidLaunch:adjustConfig];
 ```
 
-![][delegate]
+![][configure]
 
 **Note**: Initialising the adjust SDK like this is `very important`. Otherwise, you may encounter different kinds of
 issues as described in our [troubleshooting section](#ts-delayed-init).
@@ -232,8 +232,8 @@ instance with one of the following parameters:
 ```
 
 If you don't want your app in production to display any logs coming from the adjust SDK, then you should select
-`ADJLogLevelSuppress` and in addition to that, initialise `ADJConfig` object with another constructor where you should
-enable suppress log level mode:
+`ADJLogLevelSuppress` and in addition to that, initialise `ADJConfig` object with another constructor where you should enable 
+suppress log level mode:
 
 ```objc
 #import "Adjust.h"
@@ -366,8 +366,8 @@ You can read more about using URL callbacks, including a full list of available 
 
 You can also add parameters to be transmitted to network partners, which have been activated in youradjust dashboard.
 
-This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter`
-method on your `ADJEvent` instance.
+This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter` method 
+on your `ADJEvent` instance.
 
 ```objc
 ADJEvent *event = [ADJEvent eventWithEventToken:@"abc123"];
@@ -395,17 +395,16 @@ need to send them with an install, but can only obtain the needed values after l
 The same callback parameters that are registered for [events](#callback-parameters) can be also saved to be sent in every
 event or session of the adjust SDK.
 
-The session callback parameters have a similar interface of the event callback parameters. Instead of adding the key and
-it's value to an event, it's added through a call to `Adjust` method `addSessionCallbackParameter:value:`:
+The session callback parameters have a similar interface of the event callback parameters. Instead of adding the key and it's 
+value to an event, it's added through a call to `Adjust` method `addSessionCallbackParameter:value:`:
 
 ```objc
 [Adjust addSessionCallbackParameter:@"foo" value:@"bar"];
 ```
 
-The session callback parameters will be merged with the callback parameters added to an event. The callback parameters
-added to an event have precedence over the session callback parameters. Meaning that, when adding a callback parameter to
-an event with the same key to one added from the session, the value that prevails is the callback parameter added to the
-event.
+The session callback parameters will be merged with the callback parameters added to an event. The callback parameters added 
+to an event have precedence over the session callback parameters. Meaning that, when adding a callback parameter to an event 
+with the same key to one added from the session, the value that prevails is the callback parameter added to the event.
 
 It's possible to remove a specific session callback parameter by passing the desiring key to the method
 `removeSessionCallbackParameter`.
@@ -435,9 +434,9 @@ value to an event, it's added through a call to `Adjust` method `addSessionPartn
 [Adjust addSessionPartnerParameter:@"foo" value:@"bar"];
 ```
 
-The session partner parameters will be merged with the partner parameters added to an event. The partner parameters added
-to an event have precedence over the session partner parameters. Meaning that, when adding a partner parameter to an event
-with the same key to one added from the session, the value that prevails is the partner parameter added to the event.
+The session partner parameters will be merged with the partner parameters added to an event. The partner parameters added to 
+an event have precedence over the session partner parameters. Meaning that, when adding a partner parameter to an event with 
+the same key to one added from the session, the value that prevails is the partner parameter added to the event.
 
 It's possible to remove a specific session partner parameter by passing the desiring key to the method
 `removeSessionPartnerParameter`.
@@ -464,9 +463,9 @@ Set the initial delay time in seconds with the method `setDelayStart` in the `AD
 [adjustConfig setDelayStart:5.5];
 ```
 
-In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds.
-After this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be
-added to the delayed install session and events and the adjust SDK will resume as usual.
+In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds. After 
+this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be added to 
+the delayed install session and events and the adjust SDK will resume as usual.
 
 **The maximum delay start time of the adjust SDK is 10 seconds**.
 
@@ -513,7 +512,7 @@ have access to the `attribution` parameter. Here is a quick summary of its prope
 
 ### <a id="event-session-callbacks">Event and session callbacks
 
-You can register a delegate callback to be notified of successful and failed tracked events and/or sessions. The same
+You can register a delegate callback to be notified of successful and failed tracked events and/or sessions. The same 
 optional protocol `AdjustDelegate` used for the [attribution callback](#attribution-callback) is used.
 
 Follow the same steps and implement the following delegate callback function for successful tracked events:
@@ -545,8 +544,8 @@ And for failed tracked sessions:
 ```
 
 The delegate functions will be called after the SDK tries to send a package to the server. Within the delegate callback you
-have access to a response data object specifically for the delegate callback. Here is a quick summary of the session
-response data properties:
+have access to a response data object specifically for the delegate callback. Here is a quick summary of the session response 
+data properties:
 
 - `NSString message` the message from the server or the error logged by the SDK.
 - `NSString timeStamp` timestamp from the server.
@@ -563,7 +562,7 @@ And both event and session failed objects also contain:
 
 ### <a id="disable-tracking">Disable tracking
 
-You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter
+You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter 
 `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
 
 ```objc
@@ -585,16 +584,16 @@ You can activate offline mode by calling `setOfflineMode` with the parameter `YE
 [Adjust setOfflineMode:YES];
 ```
 
-Conversely, you can deactivate offline mode by calling `setOfflineMode` with `NO`. When the adjust SDK is put back in
-online mode, all saved information is sent to our servers with the correct time information.
+Conversely, you can deactivate offline mode by calling `setOfflineMode` with `NO`. When the adjust SDK is put back in online 
+mode, all saved information is sent to our servers with the correct time information.
 
 Unlike disabling tracking, this setting is **not remembered** bettween sessions. This means that the SDK is in online mode
 whenever it is started, even if the app was terminated in offline mode.
 
 ### <a id="event-buffering">Event buffering
 
-If your app makes heavy use of event tracking, you might want to delay some HTTP requests in order to send them in one
-batch every minute. You can enable event buffering with your `ADJConfig` instance:
+If your app makes heavy use of event tracking, you might want to delay some HTTP requests in order to send them in one batch 
+every minute. You can enable event buffering with your `ADJConfig` instance:
 
 ```objc
 [adjustConfig setEventBufferingEnabled:YES];
@@ -604,8 +603,8 @@ If nothing is set, event buffering is **disabled by default**.
 
 ### <a id="background-tracking">Background tracking
 
-The default behaviour of the adjust SDK is to pause sending HTTP requests while the app is in the background. You can
-change this in your `AdjustConfig` instance:
+The default behaviour of the adjust SDK is to pause sending HTTP requests while the app is in the background. You can change 
+this in your `AdjustConfig` instance:
 
 ```objc
 [adjustConfig setSendInBackground:YES];
@@ -615,7 +614,7 @@ If nothing is set, sending in background is **disabled by default**.
 
 ### <a id="device-ids">Device IDs
 
-Certain services (such as Google Analytics) require you to coordinate device and client IDs in order to prevent duplicate
+Certain services (such as Google Analytics) require you to coordinate device and client IDs in order to prevent duplicated
 reporting.
 
 To obtain the device identifier IDFA, call the function `idfa`:
@@ -626,7 +625,7 @@ NSString *idfa = [Adjust idfa];
 
 ### <a id="push-token">Push token
 
-To send us the push notification token, add the following call to `Adjust` in the
+To send us the push notification token, add the following call to `Adjust` in the 
 `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:
 
 ```objc
@@ -662,26 +661,25 @@ If you want to use the Adjust SDK to recognize users that found your app pre-ins
 
 If you are using the adjust tracker URL with an option to deep link into your app from the URL, there is the possibility to
 get info about the deep link URL and its content. Hitting the URL can happen when the user has your app already installed
-(standard deep linking scenario) or if they don't have the app on their device (deferred deep linking scenario). Both of
-these scenarios are supported by the adjust SDK and in both cases the deep link URL will be provided to you after you app
-has been started after hitting the tracker URL. In order to use this feature in your app, you need to set it up properly.
+(standard deep linking scenario) or if they don't have the app on their device (deferred deep linking scenario). Both of 
+these scenarios are supported by the adjust SDK and in both cases the deep link URL will be provided to you after you app has 
+been started after hitting the tracker URL. In order to use this feature in your app, you need to set it up properly.
 
 ### <a id="deeplinking-standard">Standard deep linking scenario
 
-If your user already has the app installed and hits the tracker URL with deep link information in it, your application will
-be opened and the content of the deep link will be sent to your app so that you can parse it and decide what to do next.
-With introduction of iOS 9, Apple has changed the way how deep linking should be handled in the app. Depending on which
-scenario you want to use for your app (or if you want to use them both to support wide range of devices), you need to set
-up your app to handle one or both of the following scenarios.
+If your user already has the app installed and hits the tracker URL with deep link information in it, your application will 
+be opened and the content of the deep link will be sent to your app so that you can parse it and decide what to do next. With 
+introduction of iOS 9, Apple has changed the way how deep linking should be handled in the app. Depending on which scenario 
+you want to use for your app (or if you want to use them both to support wide range of devices), you need to set up your app 
+to handle one or both of the following scenarios.
 
 ### <a id="deeplinking-setup-old"> Deep linking on iOS 8 and earlier
 
-Deep linking on iOS 8 and earlier devices is being done with usage of a custom URL scheme setting. You need to pick a
-custom URL scheme name which your app will be in charge for opening. This scheme name will also be used in the adjust
-tracker URL as part of the `deep_link` parameter. In order to set this in your app, open your `Info.plist` file and add new
-`URL types` row to it. In there, as `URL identifier` write you app's bundle ID and under `URL schemes` add scheme name(s)
-which you want your app to handle. In the example below, we have chosen that our app should handle the `adjustExample` scheme
-name.
+Deep linking on iOS 8 and earlier devices is being done with usage of a custom URL scheme setting. You need to pick a custom 
+URL scheme name which your app will be in charge for opening. This scheme name will also be used in the adjust tracker URL as 
+part of the `deep_link` parameter. In order to set this in your app, open your `Info.plist` file and add new `URL types` row 
+to it. In there, as `URL identifier` write you app's bundle ID and under `URL schemes` add scheme name(s) which you want your 
+app to handle. In the example below, we have chosen that our app should handle the `adjustExample` scheme name.
 
 ![][custom-url-scheme]
 
@@ -706,25 +704,25 @@ With this setup, you have successfully set up deep linking handling for iOS devi
 
 ### <a id="deeplinking-setup-new"> Deep linking on iOS 9 and later
 
-In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple universal
+In order to set deep linking support for iOS 9 and later devices, you need to enable your app to handle Apple universal 
 links. To find out more about universal links and how their setup looks like, you can check [here][universal-links].
 
-Adjust is taking care of lots of things to do with universal links behind the scenes. But, in order to support
-universal links with the adjust, you need to perform small setup for universal links in the adjust dashboard. For more
-information on that should be done, please consult our official [docs][universal-links-guide].
+Adjust is taking care of lots of things to do with universal links behind the scenes. But, in order to support universal 
+links with the adjust, you need to perform small setup for universal links in the adjust dashboard. For more information on 
+that should be done, please consult our official [docs][universal-links-guide].
 
 Once you have successfully enabled the universal links feature in the dashboard, you need to do this in your app as well:
 
-After enabling `Associated Domains` for your app in Apple Developer Portal, you need to do the same thing in your app's
-Xcode project. After enabling `Assciated Domains`, add the universal link which was generated for you in the adjust
-dashboard in the `Domains` section by prefixing it with `applinks:` and make sure that you also remove the `http(s)` part of the
-universal link.
+After enabling `Associated Domains` for your app in Apple Developer Portal, you need to do the same thing in your app's Xcode 
+project. After enabling `Assciated Domains`, add the universal link which was generated for you in the adjust dashboard in 
+the `Domains` section by prefixing it with `applinks:` and make sure that you also remove the `http(s)` part of the universal 
+link.
 
 ![][associated-domains-applinks]
 
-After this has been set up, your app will be opened after you click the adjust tracker universal link. After app is
-opened, `continueUserActivity` method of your `AppDelegate` class will be triggered and the place where the content of the
-universal link URL will be delivered. If you want to access the content of the deep link, override this method.
+After this has been set up, your app will be opened after you click the adjust tracker universal link. After app is opened, 
+`continueUserActivity` method of your `AppDelegate` class will be triggered and the place where the content of the universal 
+link URL will be delivered. If you want to access the content of the deep link, override this method.
 
 ``` objc
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
@@ -744,10 +742,10 @@ universal link URL will be delivered. If you want to access the content of the d
 
 With this setup, you have successfully set up deep linking handling for iOS devices with iOS 9 and later versions.
 
-We provide a helper function that allows you to convert a universal link to an old style deep link URL, in case you had
-some custom logic in your code which was always expecting deep link info to arrive in old style custom URL scheme format.
-You can call this method with universal link and the custom URL scheme name which you would like to see your deep link
-prefixed with and we will generate the custom URL scheme deep link for you:
+We provide a helper function that allows you to convert a universal link to an old style deep link URL, in case you had some 
+custom logic in your code which was always expecting deep link info to arrive in old style custom URL scheme format. You can 
+call this method with universal link and the custom URL scheme name which you would like to see your deep link prefixed with 
+and we will generate the custom URL scheme deep link for you:
 
 ``` objc
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
@@ -768,7 +766,7 @@ prefixed with and we will generate the custom URL scheme deep link for you:
 ### <a id="deeplinking-deferred">Deferred deep linking scenario
 
 You can register a delegate callback to be notified before a deferred deep link is opened and decide if the adjust SDK will
-try to open it. The same optional protocol `AdjustDelegate` used for the [attribution callback](#attribution-callback) and
+try to open it. The same optional protocol `AdjustDelegate` used for the [attribution callback](#attribution-callback) and 
 for [event and session callbacks](#event-session-callbacks) is used.
 
 Follow the same steps and implement the following delegate callback function for deferred deep links:
@@ -784,7 +782,7 @@ Follow the same steps and implement the following delegate callback function for
 }
 ```
 
-The callback function will be called after the SDK receives a deffered deep link from our server and before opening it.
+The callback function will be called after the SDK receives a deffered deep link from our server and before opening it. 
 Within the callback function you have access to the deep link. The returned boolean value determines if the SDK will launch
 the deep link. You could, for example, not allow the SDK to open the deep link at the current moment, save it, and open it
 yourself later.
@@ -1100,17 +1098,20 @@ determining amount value**.
 [run]:         https://raw.github.com/adjust/sdks/master/Resources/ios/run5.png
 [add]:         https://raw.github.com/adjust/sdks/master/Resources/ios/add5.png
 [drag]:        https://raw.github.com/adjust/sdks/master/Resources/ios/drag5.png
-[delegate]:    https://raw.github.com/adjust/sdks/master/Resources/ios/delegate5.png
+[configure]:   https://raw.github.com/adjust/sdks/master/Resources/ios/delegate5.png
 [framework]:   https://raw.github.com/adjust/sdks/master/Resources/ios/framework5.png
 
-[adc-ios-team-id]:            https://raw.github.com/adjust/sdks/master/Resources/ios/adc-ios-team-id5.png
-[custom-url-scheme]:          https://raw.github.com/adjust/sdks/master/Resources/ios/custom-url-scheme.png
-[adc-associated-domains]:     https://raw.github.com/adjust/sdks/master/Resources/ios/adc-associated-domains5.png
-[xcode-associated-domains]:   https://raw.github.com/adjust/sdks/master/Resources/ios/xcode-associated-domains5.png
-[universal-links-dashboard]:  https://raw.github.com/adjust/sdks/master/Resources/ios/universal-links-dashboard5.png
+[custom-url-scheme]:            https://raw.github.com/adjust/sdks/master/Resources/ios/custom-url-scheme.png
+[associated-domains-applinks]:  https://raw.github.com/adjust/sdks/master/Resources/ios/associated-domains-applinks.png
 
-[associated-domains-applinks]:          https://raw.github.com/adjust/sdks/master/Resources/ios/associated-domains-applinks.png
-[universal-links-dashboard-values]: https://raw.github.com/adjust/sdks/master/Resources/ios/universal-links-dashboard-values5.png
+[run-n]:         https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-run.png
+[add-n]:         https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-add.png
+[drag-n]:        https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-drag.png
+[configure-n]:   https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-configure.png
+[framework-n]:   https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-frameworks.png
+
+[custom-url-scheme-n]:            https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-custom-url-scheme.png
+[associated-domains-applinks-n]:  https://raw.github.com/adjust/sdks/master/Resources/ios/rdm-associated-domains-xcode.png
 
 ## <a id="license">License
 
