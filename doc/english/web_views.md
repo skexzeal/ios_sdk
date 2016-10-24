@@ -36,21 +36,22 @@ It provides a bridge from Javascript to native Objective-C calls (and vice versa
 
 ### <a id="native-add">Add native adjust iOS SDK
 
-In oder to use adjust SDK in your web views, you need to add adjust's native iOS SDK to your app. To install adjust's native iOS SDK, follow the `Basic integration` chapter of our [iOS SDK README][basic_integration].
+In oder to use adjust SDK in your web views, you need to add adjust's native iOS SDK to your app. To install adjust's native 
+iOS SDK, follow the `Basic integration` chapter of our [iOS SDK README][basic-integration].
 
 ### <a id="bridge-add">Add AdjustBridge to your project
 
-In Xcode's `Project Navigator` locate the `Supporting Files` group (or any other group of your choice). From Finder drag 
-the `AdjustBridge` subdirectory into Xcode's `Supporting Files` group.
+In Xcode's `Project Navigator` locate the `Supporting Files` group (or any other group of your choice). From Finder drag the 
+`AdjustBridge` subdirectory into Xcode's `Supporting Files` group.
 
-![][bridge_drag]
+![][drag]
 
-In the dialog `Choose options for adding these files` make sure to check the checkbox to 
-`Copy items into destination group's folder` and select the upper radio button to `Create groups for any added folders`.
+In the dialog `Choose options for adding these files` make sure to check the checkbox to `Copy items into destination group's 
+folder` and select the upper radio button to `Create groups for any added folders`.
 
-![][bridge_add]
+![][add]
 
-### <a id="bridge-integrate-app">3. Integrate AdjustBridge into your app
+### <a id="bridge-integrate-app">Integrate AdjustBridge into your app
 
 In the Project Navigator open the source file your View Controller. Add the `import` statement at the top of the file. In 
 the `viewDidLoad` or `viewWillAppear` method of your Web View Delegate add the following calls to `AdjustBridge`:
@@ -75,13 +76,12 @@ the `viewDidLoad` or `viewWillAppear` method of your Web View Delegate add the f
 // ...
 ```
 
-![][bridge_init_objc]
+![][init-objc]
 
 ### <a id="bridge-integrate-web">Integrate AdjustBrige into your web view
 
 To use the Javascript bridge on your web view, it must be configured like the `WebViewJavascriptBridge` plugin 
-[README][wvjsb_readme] is advising in section `4`. Include the following Javascript code to intialize the adjust iOS web 
-bridge:
+[README][wvjsb-readme] is advising. Include the following Javascript code to intialize the adjust iOS web bridge:
 
 ```js
 function setupWebViewJavascriptBridge(callback) {
@@ -108,7 +108,7 @@ setupWebViewJavascriptBridge(function(bridge) {
 })
 ```
 
-![][bridge_init_js]
+![][init-js]
 
 ### <a id="basic-setup">Basic setup
 
@@ -136,7 +136,7 @@ setupWebViewJavascriptBridge(function(bridge) {
 )}
 ```
 
-![][bridge_init_js_xcode]
+![][init-js-xcode]
 
 Replace `{YourAppToken}` with your app token. You can find it in your [dashboard].
 
@@ -147,12 +147,12 @@ var environment = AdjustConfig.EnvironmentSandbox
 var environment = AdjustConfig.EnvironmentProduction
 ```
 
-**Important:** This value should be set to `AdjustConfig.EnvironmentSandbox` if and only if you or someone else is testing 
-your app. Make sure to set the environment to `AdjustConfig.EnvironmentProduction` just before you publish the app. Set it 
+**Important:** This value should be set to `AdjustConfig.EnvironmentSandbox` if and only if you or someone else is testing  
+your app. Make sure to set the environment to `AdjustConfig.EnvironmentProduction` just before you publish the app. Set it  
 back to `AdjustConfig.EnvironmentSandbox` when you start developing and testing it again.
 
-We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that 
-you keep this value meaningful at all times! This is especially important if you are tracking revenue.
+We use this environment to distinguish between real traffic and test traffic from test devices. It is very important that you 
+keep this value meaningful at all times! This is especially important if you are tracking revenue.
 
 ### <a id="bridge-logging">AdjustBridge logging
 
@@ -173,7 +173,7 @@ adjustConfig.setLogLevel(AdjustConfig.LogLevelAssert)  // disable errors as well
 Build and run your app. If the build succeeds, you should carefully read the SDK logs in the console. After the app launches
 for the first time, you should see the info log `Install tracked`.
 
-![][bridge_install_tracked]
+![][install-tracked]
 
 ## <a id="additional-features">Additional features
 
@@ -181,9 +181,9 @@ Once you integrate the adjust SDK into your project, you can take advantage of t
 
 ### <a id="event-tracking">Event tracking
 
-You can use adjust to track events. Let's say you want to track every tap on a particular button. You would create a new 
-event token in your [dashboard], which has an associated event token - looking something like `abc123`. In your button's 
-`onclick` method you would then add the following lines to track the tap:
+You can use adjust to track events. Let's say you want to track every tap on a particular button. You would create a new event 
+token in your [dashboard], which has an associated event token - looking something like `abc123`. In your button's `onclick` 
+method you would then add the following lines to track the tap:
 
 ```js
 var adjustEvent = new AdjustEvent('abc123')
@@ -215,9 +215,9 @@ You can read more about revenue and event tracking in the [event tracking guide]
 
 #### <a id="callback-parameters">Callback parameters
 
-You can register a callback URL for your events in your [dashboard]. We will send a GET request to that URL whenever the 
-event gets tracked. You can add callback parameters to that event by calling `addCallbackParameter` on the event before 
-tracking it. We will then append these parameters to your callback URL.
+You can register a callback URL for your events in your [dashboard]. We will send a GET request to that URL whenever the event 
+gets tracked. You can add callback parameters to that event by calling `addCallbackParameter` on the event before tracking it. 
+We will then append these parameters to your callback URL.
 
 For example, suppose you have registered the URL `http://www.adjust.com/callback` then track an event like this:
 
@@ -235,8 +235,8 @@ In that case we would track the event and send a request to:
 
 It should be mentioned that we support a variety of placeholders like `{idfa}` that can be used as parameter values. In the 
 resulting callback this placeholder would be replaced with the ID for Advertisers of the current device. Also note that we 
-don't store any of your custom parameters, but only append them to your callbacks. If you haven't registered a callback for 
-an event, these parameters won't even be read.
+don't store any of your custom parameters, but only append them to your callbacks. If you haven't registered a callback for an 
+event, these parameters won't even be read.
 
 You can read more about using URL callbacks, including a full list of available values, in our 
 [callbacks guide][callbacks-guide].
@@ -246,8 +246,8 @@ You can read more about using URL callbacks, including a full list of available 
 You can also add parameters to be transmitted to network partners, for the integrations that have been activated in your 
 adjust dashboard.
 
-This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter` 
-method on your `AdjustEvent` instance.
+This works similarly to the callback parameters mentioned above, but can be added by calling the `addPartnerParameter` method 
+on your `AdjustEvent` instance.
 
 ```js
 var adjustEvent = new AdjustEvent('abc123')
@@ -261,12 +261,12 @@ You can read more about special partners and these integrations in our [guide to
 
 ### <a id="attribution-callback">Attribution callback
 
-You can register a callback method to be notified of attribution changes. Due to the different sources considered 
-for attribution, this information cannot by provided synchronously.
+You can register a callback method to be notified of attribution changes. Due to the different sources considered for 
+attribution, this information cannot by provided synchronously.
 
 Please make sure to consider our [applicable attribution data policies][attribution-data].
 
-As the callback method is configured using the `AdjustConfig` instance, you should call `setAttributionCallback` before 
+As the callback method is configured using the `AdjustConfig` instance, you should call `setAttributionCallback` before  
 calling `Adjust.appDidLaunch(adjustConfig)`.
 
 ```js
@@ -282,7 +282,7 @@ adjustConfig.setAttributionCallback(function(attribution) {
 })
 ```
 
-The callback method will get triggered when the SDK receives final attribution data. Within the callback you have access to 
+The callback method will get triggered when the SDK receives final attribution data. Within the callback you have access to  
 the `attribution` parameter. Here is a quick summary of its properties:
 
 - `var trackerToken` the tracker token of the current install.
@@ -296,8 +296,7 @@ the `attribution` parameter. Here is a quick summary of its properties:
 ### <a id="event-session-callbacks">Event and session callbacks
 
 You can register a listener to be notified when events or sessions are tracked. There are four listeners: one for tracking 
-successful events, one for tracking failed events, one for tracking successful sessions and one for tracking failed 
-sessions.
+successful events, one for tracking failed events, one for tracking successful sessions and one for tracking failed sessions.
 
 Follow these steps and implement the following callback methods to track successful events:
 
@@ -331,8 +330,8 @@ adjustConfig.setSessionFailureCallback(function(sessionFailure) {
 })
 ```
 
-The callback methods will be called after the SDK tries to send a package to the server. Within the callback methods you 
-have access to a response data object specifically for that callback. Here is a quick summary of the session response data 
+The callback methods will be called after the SDK tries to send a package to the server. Within the callback methods you have 
+access to a response data object specifically for that callback. Here is a quick summary of the session response data  
 properties:
 
 - `var message` the message from the server or the error logged by the SDK.
@@ -408,7 +407,7 @@ adjustConfig.setSendInBackground(true)
 
 ### <a id="device-ids">Device IDs
 
-Certain services (such as Google Analytics) require you to coordinate Device and Client IDs in order to prevent duplicate 
+Certain services (such as Google Analytics) require you to coordinate Device and Client IDs in order to prevent duplicated 
 reporting. 
 
 To obtain the device identifier IDFA, call the function `getIdfa`:
@@ -423,9 +422,9 @@ Adjust.getIdfa(function(idfa) {
 
 You can set up the adjust SDK to handle deep links that are used to open your app via a custom URL scheme. 
 
-If you are planning to run retargeting or re-engagement campaigns with deep links, you should put the adjust campaign 
-specific parameter into your deep link. For more information on how to run retargeting or re-engagement campaigns with deep 
-links, check our [official docs][reattribution-deeplinks].
+If you are planning to run retargeting or re-engagement campaigns with deep links, you should put the adjust campaign specific 
+parameter into your deep link. For more information on how to run retargeting or re-engagement campaigns with deep links, 
+check our [official docs][reattribution-deeplinks].
 
 In the Project Navigator open the source file your Application Delegate. Find or add the `openURL` and 
 `application:continueUserActivity:restorationHandler:` and add the call to the `AdjustBridge` reference which exists in your
@@ -464,10 +463,10 @@ view controller which is displaying the web view:
 }
 ```
 
-By adding this call to both of these methods, you will support deeplink reattributions for both - iOS 8 and lower (which 
-uses old custom URL scheme approach) and iOS 9 and higher (which uses `universal links`).
+By adding this call to both of these methods, you will support deeplink reattributions for both - iOS 8 and lower (which uses 
+old custom URL scheme approach) and iOS 9 and higher (which uses `universal links`).
 
-**Important**: In order to enable universal links in your app, please read the [universal links guide][ios_sdk_ulinks] from 
+**Important**: In order to enable universal links in your app, please read the [universal links guide][ios-sdk-ulinks] from 
 the native iOS SDK README.
 
 In order to get deeplink URL info back to your web view, you should register a handle on the bridge called `deeplink`. This 
@@ -497,11 +496,11 @@ adjustConfig.setDeferredDeeplinkCallback(function(deferredDeeplink) {
 })
 ```
 
-The callback function will be called after the SDK receives a deferred deeplink from the server and before SDK tries to 
-open it. 
+The callback function will be called after the SDK receives a deferred deeplink from the server and before SDK tries to open 
+it.
 
-With another setting on the `AdjustConfig` instance, you have the possibility to tell our SDK to open this 
-link or not. You can do this by calling the `setOpenDeferredDeeplink` method:
+With another setting on the `AdjustConfig` instance, you have the possibility to tell our SDK to open this link or not. You 
+can do this by calling the `setOpenDeferredDeeplink` method:
 
 ```js
 adjustConfig.setOpenDeferredDeeplink(true)
@@ -514,23 +513,30 @@ If you do not specify anything, by default, our SDK will try to open the link.
 [dashboard]:  http://adjust.com
 [adjust.com]: http://adjust.com
 
-[wvjsb_readme]:             https://github.com/marcuswestin/WebViewJavascriptBridge#usage
-[ios_sdk_ulinks]:           https://github.com/adjust/ios_sdk/#universal-links
+[wvjsb-readme]:             https://github.com/marcuswestin/WebViewJavascriptBridge#usage
+[ios-sdk-ulinks]:           https://github.com/adjust/ios_sdk/#universal-links
 [callbacks-guide]:          https://docs.adjust.com/en/callbacks
 [attribution-data]:         https://github.com/adjust/sdks/blob/master/doc/attribution-data.md
 [special-partners]:         https://docs.adjust.com/en/special-partners
-[basic_integration]:        https://github.com/adjust/ios_sdk/#basic-integration
-[web_view_js_bridge]:       https://github.com/marcuswestin/WebViewJavascriptBridge
+[basic-integration]:        https://github.com/adjust/ios_sdk/#basic-integration
+[web-view-js-bridge]:       https://github.com/marcuswestin/WebViewJavascriptBridge
 [currency-conversion]:      https://docs.adjust.com/en/event-tracking/#tracking-purchases-in-different-currencies
 [event-tracking-guide]:     https://docs.adjust.com/en/event-tracking/#reference-tracking-purchases-and-revenues
 [reattribution-deeplinks]:  https://docs.adjust.com/en/deeplinking/#manually-appending-attribution-data-to-a-deep-link
 
-[bridge_add]:             https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_add.png
-[bridge_drag]:            https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_drag.png
-[bridge_init_js]:         https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_js.png
-[bridge_init_objc]:       https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_objc.png
-[bridge_init_js_xcode]:   https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_js_xcode.png
-[bridge_install_tracked]: https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_install_tracked.png
+[add]:             https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_add.png
+[drag]:            https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_drag.png
+[init-js]:         https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_js.png
+[init-objc]:       https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_objc.png
+[init-js-xcode]:   https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_init_js_xcode.png
+[install-tracked]: https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/bridge_install_tracked.png
+
+[add-n]:             https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-add.png
+[drag-n]:            https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-drag.png
+[init-js-n]:         https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-init-js.png
+[init-objc-n]:       https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-init-objc.png
+[init-js-xcode-n]:   https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-init-xcode.png
+[install-tracked-n]: https://raw.githubusercontent.com/adjust/sdks/master/Resources/ios/bridge/jsb-install-tracked.png
 
 ## <a id="license">License
 
