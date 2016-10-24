@@ -27,12 +27,13 @@ You can also integrate adjust with Criteo events by following these steps:
 2. Drag the `ADJCriteo.h` and `ADJCriteo.m` files into the `Adjust` folder inside your project.
 
 3. In the dialog `Choose options for adding these files` make sure to check the checkbox
-to `Copy items if needed` and select the radio button to `Create groups`.
+   to `Copy items if needed` and select the radio button to `Create groups`.
 
 ### Criteo events
+
 Now you can integrate each of the different Criteo events, like in the following examples:
 
-#### View Listing
+### View Listing
 
 ```objc
 #import "ADJCriteo.h"
@@ -46,7 +47,7 @@ NSArray *productIds = @[@"productId1", @"productId2", @"product3"];
 [Adjust trackEvent:event];
 ```
 
-#### View Product
+### View Product
 
 ```objc
 #import "ADJCriteo.h"
@@ -58,7 +59,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{viewProductEventToken}"];
 [Adjust trackEvent:event];
 ```
 
-#### Cart
+### Cart
 
 ```objc
 #import "ADJCriteo.h"
@@ -75,7 +76,7 @@ NSArray *products = @[product1, product2, product3];
 [Adjust trackEvent:event];
 ```
 
-#### Transaction confirmation
+### Transaction confirmation
 
 ```objc
 #import "ADJCriteo.h"
@@ -93,7 +94,7 @@ NSArray *products = @[product1, product2, product3];
 [Adjust trackEvent:event];
 ```
 
-#### User Level
+### User Level
 
 ```objc
 #import "ADJCriteo.h"
@@ -105,7 +106,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{userLevelEventToken}"];
 [Adjust trackEvent:event];
 ```
 
-#### User Status
+### User Status
 
 ```objc
 #import "ADJCriteo.h"
@@ -117,7 +118,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{userStatusEventToken}"];
 [Adjust trackEvent:event];
 ```
 
-#### Achievement Unlocked
+### Achievement Unlocked
 
 ```objc
 #import "ADJCriteo.h"
@@ -129,7 +130,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{achievementUnlockedEventToken
 [Adjust trackEvent:event];
 ```
 
-#### Custom Event
+### Custom Event
 
 ```objc
 #import "ADJCriteo.h"
@@ -141,7 +142,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{customEventEventToken}"];
 [Adjust trackEvent:event];
 ```
 
-#### Custom Event 2
+### Custom Event 2
 
 ```objc
 #import "ADJCriteo.h"
@@ -153,12 +154,11 @@ ADJEvent *event = [ADJEvent eventWithEventToken:@"{customEvent2EventToken}"];
 [Adjust trackEvent:event];
 ```
 
-#### Hashed Email
+### Hashed Email
 
-It's possible to attach an hashed email in every Criteo event with the `injectHashedEmailIntoCriteoEvents` method.
-The hashed email will be sent with every Criteo event for the duration of the application lifecycle,
-so it must be set again when the app is re-lauched.
-The hashed email can be removed by setting the `injectHashedEmailIntoCriteoEvents` value with `nil`.
+It's possible to attach an hashed email in every Criteo event with the `injectHashedEmailIntoCriteoEvents` method. The hashed 
+email will be sent with every Criteo event for the duration of the application lifecycle, so it must be set again when the app 
+is re-lauched. The hashed email can be removed by setting the `injectHashedEmailIntoCriteoEvents` value with `nil`.
 
 ```objc
 #import "ADJCriteo.h"
@@ -166,9 +166,11 @@ The hashed email can be removed by setting the `injectHashedEmailIntoCriteoEvent
 [ADJCriteo injectHashedEmailIntoCriteoEvents:@"8455938a1db5c475a87d76edacb6284e"];
 ```
 
-#### Search dates
+### Search dates
 
-It's possible to attach a check-in and check-out date to every Criteo event with the `injectViewSearchDatesIntoCriteoEvent` method. The dates will be sent with every Criteo event for the duration of the application lifecycle, so it must be set again when the app is re-lauched.
+It's possible to attach a check-in and check-out date to every Criteo event with the `injectViewSearchDatesIntoCriteoEvent` 
+method. The dates will be sent with every Criteo event for the duration of the application lifecycle, so it must be set again 
+when the app is re-lauched.
 
 The search dates can be removed by setting the `injectViewSearchDatesIntoCriteoEvents` values with `nil`.
 
@@ -178,9 +180,11 @@ The search dates can be removed by setting the `injectViewSearchDatesIntoCriteoE
 [ADJCriteo injectViewSearchDatesIntoCriteoEvents:@"2015-01-01" checkOutDate:@"2015-01-07"];
 ```
 
-#### Partner id
+### Partner id
 
-It's possible to attach a partner id to every Criteo event with the `injectPartnerIdIntoCriteoEvent` method. The partner id will be sent with every Criteo event for the duration of the application lifecycle, so it must be set again when the app is re-lauched.
+It's possible to attach a partner id to every Criteo event with the `injectPartnerIdIntoCriteoEvent` method. The partner id 
+will be sent with every Criteo event for the duration of the application lifecycle, so it must be set again when the app is 
+re-lauched.
 
 The search dates can be removed by setting the `injectPartnerIdIntoCriteoEvent` value with `nil`.
 
@@ -190,15 +194,16 @@ The search dates can be removed by setting the `injectPartnerIdIntoCriteoEvent` 
 [ADJCriteo injectPartnerIdIntoCriteoEvents:@"{criteoPartnerId}"];
 ```
 
-#### Send deeplink
+### Send deeplink
 
-In the Project Navigator open the source file your Application Delegate. Find or add the method openURL and add the following call to adjust:
+In the Project Navigator open the source file your Application Delegate. Find or add the method openURL and add the following 
+call to adjust:
 
 ```objc
 #import "ADJCriteo.h"
 
-- (BOOL)  application:(UIApplication *)application openURL:(NSURL *)url
-    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     ADJEvent *event = [ADJEvent eventWithEventToken:@"{deeplinkEventToken}"];
     
