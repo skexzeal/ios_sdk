@@ -22,18 +22,20 @@ github "adjust/ios_sdk" "sociomantic"
 
 You can also integrate adjust with Sociomantic events by following these steps:
 
-1. Locate the `plugin/Sociomantic` folder inside the downloaded archive from our [releases page](https://github.com/adjust/ios_sdk/releases).
+1. Locate the `plugin/Sociomantic` folder inside the downloaded archive from our [releases page] . 
+   (https://github.com/adjust/ios_sdk/releases).
 
 2. Drag the `ADJSociomantic.h` and `ADJSociomantic.m` files into the `Adjust` folder inside your project.
 
-3. In the dialog `Choose options for adding these files` make sure to check the checkbox
-to `Copy items if needed` and select the radio button to `Create groups`.
+3. In the dialog `Choose options for adding these files` make sure to check the checkbox to `Copy items if needed` and select 
+   the radio button to `Create groups`.
 
 ### Sociomantic events
 
 You can now use Sociomantic events by following these steps:
 
-1. You now have access to the Sociomantic events methods as well as the constants you should use as the property names of your dictionaries:
+1. You now have access to the Sociomantic events methods as well as the constants you should use as the property names of your 
+   dictionaries:
 
     ```objc
     NSString *const SCMCategory;
@@ -76,7 +78,7 @@ You can now use Sociomantic events by following these steps:
 
 3. Now you can integrate each of the different Sociomantic events, as in the following examples:
 
-#### Customer Event
+### Customer Event
 
 ```objc
 #import "ADJSociomantic.h"
@@ -90,7 +92,7 @@ NSDictionary *customerData = @{
 [Adjust trackEvent:event];
 ```
 
-#### View Home Page
+### View Home Page
 
 ```objc
 #import "ADJSociomantic.h"
@@ -101,7 +103,7 @@ ADJEvent *event = [ADJEvent eventWithEventToken:HOMEPAGE_TOKEN];
 [Adjust trackEvent:event];
 ```
 
-#### View Listing
+### View Listing
 
 ```objc
 #import "ADJSociomantic.h"
@@ -116,7 +118,7 @@ NSString *date = @"1427792434";
 [Adjust trackEvent:event];
 ```
 
-#### View Product
+### View Product
 
 ```objc
 #import "ADJSociomantic.h"
@@ -131,7 +133,7 @@ NSDictionary *params = @{
 [ADJSociomantic injectViewProductIntoEvent:event productId:@"productId_4" withParameters:params];
 [Adjust trackEvent:event];
 ```
-*Available product parameters for reporting product view*
+**Available product parameters for reporting product view**:
 
 <table>
 <colgroup>
@@ -236,7 +238,7 @@ NSDictionary *params = @{
 
 If you’re not certain what setup you should use please contact your Technical Account Manager at Sociomantic.
 
-#### Cart
+### Cart
 
 ```objc
 #import "ADJSociomantic.h"
@@ -260,7 +262,7 @@ NSArray * productList = @[product5, product6, product7];
 [Adjust trackEvent:event];
 ```
 
-*Available cart parameters for reporting cart view*
+**Available cart parameters for reporting cart view**:
 
 <table>
 <colgroup>
@@ -306,7 +308,7 @@ NSArray * productList = @[product5, product6, product7];
 </tbody>
 </table>
 
-#### Unconfirmed Transaction
+### Unconfirmed Transaction
 
 ```objc
 #import "ADJSociomantic.h"
@@ -343,7 +345,7 @@ NSDictionary *parameters = @{
 [Adjust trackEvent:event];
 ```
 
-#### Confirmed Transaction
+### Confirmed Transaction
 
 ```objc
 #import "ADJSociomantic.h"
@@ -380,11 +382,11 @@ NSDictionary *parameters = @{
 [Adjust trackEvent:event];
 ```
 
-*Available cart parameters for reporting transaction view*
+**Available cart parameters for reporting transaction view**:
 
 See cart parameters
 
-*Available transaction parameters for reporting transaction views*
+**Available transaction parameters for reporting transaction views**:
 
 <table>
 <colgroup>
@@ -424,7 +426,7 @@ See cart parameters
 </tbody>
 </table>
 
-#### Lead Event
+### Lead Event
 
 ```objc
 #import "ADJSociomantic.h"
